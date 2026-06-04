@@ -9,10 +9,28 @@ import {
 import { Feather } from "@expo/vector-icons";
 
 function FormularioLi() {
+    
+    const USUARIO_CORRECTO = "admin";
+    const CONTRASENA_CORRECTA = "1234";
 
     const [usuario, setUsuario] = useState('');
     const [contrasena, setContrasena] = useState('');
     const [mostrarContrasena, setMostrarContrasena] = useState(false);
+    const [mensaje, setMensaje] = useState("");
+    const [esError, setEsError] = useState(false);
+
+    function validarLogin() {
+        if (
+            usuario === USUARIO_CORRECTO &&
+            contrasena === CONTRASENA_CORRECTA
+        ) {
+            setMensaje("Inicio de sesión exitoso");
+            setEsError(false);
+        } else {
+            setMensaje("Usuario o contraseña incorrectos");
+            setEsError(true);
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -45,11 +63,31 @@ function FormularioLi() {
 
             </View>
 
-            <TouchableOpacity style={styles.boton}>
+            {mensaje !== "" && (
+                <Text
+                    style={[
+                        styles.mensaje,
+                        {
+                            color: esError ? "red" : "green",
+                            backgroundColor: esError
+                                ? "rgba(255, 0, 0, 0.25)"
+                                : "rgba(128, 255, 128, 0.32)",
+                            borderColor: esError ? "red" : "green"
+                        }
+                    ]}
+                >
+                    {mensaje}
+                </Text>
+            )}
+
+            <TouchableOpacity
+                style={styles.boton}
+                onPress={validarLogin}
+            >
                 <Text style={styles.textoBoton}>
                     INGRESAR
                 </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> 
 
         </View>
     );
@@ -63,7 +101,7 @@ const styles = StyleSheet.create({
 
     input: {
         borderWidth: 1,
-        borderColor: '#8B5CF6',
+        borderColor: '#b30000',
         borderRadius: 3,
         paddingHorizontal: 12,
         height: 45,
@@ -73,7 +111,7 @@ const styles = StyleSheet.create({
 
     passwordContainer: {
         borderWidth: 1,
-        borderColor: '#8B5CF6',
+        borderColor: '#b30000',
         borderRadius: 3,
         height: 45,
         paddingHorizontal: 12,
@@ -88,7 +126,7 @@ const styles = StyleSheet.create({
     },
 
     boton: {
-        backgroundColor: '#8B5CF6',
+        backgroundColor: '#b30000',
         height: 45,
         marginTop: 25,
         borderRadius: 3,
@@ -100,6 +138,15 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         fontSize: 15,
+    },
+
+    mensaje: {
+        marginTop: 15,
+        textAlign: 'center',
+        fontSize: 16,
+        padding: 10,
+        borderRadius: 10,
+        borderWidth: 1
     },
 });
 

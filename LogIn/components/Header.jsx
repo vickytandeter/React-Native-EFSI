@@ -16,7 +16,7 @@ function Header(){
 
 const styles = StyleSheet.create({
     header: {
-        backgroundColor: '#6C3EF4',
+        backgroundColor: '#b30000',
         height: 70,
         justifyContent: 'center',
         alignItems: 'center',

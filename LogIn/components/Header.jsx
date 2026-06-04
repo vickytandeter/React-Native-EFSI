@@ -1,17 +1,31 @@
-import {View, Text} from 'react-native'
+import {View, Text, StyleSheet } from 'react-native'
 
 function Header(){
 
     return (
 
-        <View>
+        <View style={styles.header}>
 
-            <Text>Log In App</Text>
+            <Text style={styles.titulo}>Log In App</Text>
 
         </View>
 
     )
 
 }
+
+const styles = StyleSheet.create({
+    header: {
+        backgroundColor: '#6C3EF4',
+        height: 70,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    titulo: {
+        color: 'white',
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+});
 
 export default Header;
